@@ -47,8 +47,8 @@ func CreateSecret(w http.ResponseWriter, request *http.Request, db Database) {
 	}
 
 	// Generate new UUID and store secret in memcache with specified expiration
-	u, err := uuid.NewV4()
-	key = u.String()
+	u := uuid.NewV4()
+	key := u.String()
 	err = db.Put(key, secret.Message, secret.Expiration)
 	if err != nil {
 		fmt.Println(err)
